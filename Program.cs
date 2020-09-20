@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Threading;
 
 namespace Lab3
@@ -51,6 +52,11 @@ namespace Lab3
                     Main();
                     break;
                 case "6":
+                    construct();
+                    Main();
+                    break;
+                case "7":
+                    construct();
                     Main();
                     break;
                 case "0":
@@ -181,7 +187,6 @@ namespace Lab3
                     Console.WriteLine($"Автобусов с таким номером маршрута нет!");
                 }
             }
-
         }
         static void ListBusYear(Bus[] mas)
         {
@@ -219,6 +224,31 @@ namespace Lab3
         {
             Bus bus1 = new Bus("Силин В.", "Numvb123", 1234, "audi", 1999, 12343);
             Bus bus2 = new Bus();
+        }
+        static void BusYear(Bus[] mas)
+        {
+        re5:
+            Console.WriteLine("Введите номер автобуса(0 - для возвращения обратно):");
+            string a = Console.ReadLine();
+            byte year;
+            try
+            {
+                year = Convert.ToByte(a);
+            }
+            catch (SystemException)
+            {
+                Console.WriteLine("Номер введён некорректно");
+                goto re5;
+            }
+            if(year-1 > Convert.ToByte(mas.Length))
+            {
+                Console.WriteLine("Такого номера автобуса нетттт...");
+                goto re5;
+            }else
+            {
+                Console.WriteLine($"Возраст автобуса номер {year}: {2020 - mas[year].YearOfStartUse}");
+            }
+            
         }
     }
 }
