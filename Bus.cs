@@ -23,7 +23,9 @@ namespace Lab3
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("Имя не можеи быть пустым");
+                    
+                    throw new ArgumentNullException("Имя не может быть пустым");
+               
                 }
                 driver_name = value;
             }
@@ -38,7 +40,9 @@ namespace Lab3
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
+                
                     throw new ArgumentNullException("Номер автобуса не может быть пустым");
+              
                 }
                 bus_number = value;
             }
@@ -65,7 +69,9 @@ namespace Lab3
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
+              
                     throw new ArgumentNullException("Марка автобуса не может быть пустой");
+                
                 }
                 brand_bus = value;
             }
@@ -82,7 +88,9 @@ namespace Lab3
                 {
                     while (value > 2020)
                     {
+                       
                         Console.WriteLine("Год начала эксплуатации введён некорректно, введите год начала эксплуатации: ");
+                 
                         value = Convert.ToUInt32(Console.ReadLine());
                     }
                 }
@@ -120,28 +128,31 @@ namespace Lab3
         }
         static Bus()
         {
-            Console.WriteLine("Вызов статического конструктора\n___________________________________");
+            Console.WriteLine("Вызов статического конструктора\n\n");
         
         }
         public  static void Info()
         {
-                Console.WriteLine($"Информация о классе...Он в себе содержит:");
+            Console.WriteLine($"_____________________________________________");
+            Console.WriteLine($"Информация о классе...Он в себе содержит:");
                 Console.WriteLine($"Имя и инициалы водителя.");
                 Console.WriteLine($"Номер автобуса.");
                 Console.WriteLine($"Номер маршрута.");
                 Console.WriteLine($"Марку автобуса.");
                 Console.WriteLine($"Год начала эксплуатации.");
                 Console.WriteLine($"Пробег.");
-                Console.WriteLine($"А так же хорошее настроеееение )0))))00)");
+            Console.WriteLine($"_____________________________________________");
         }
-        public static void BusYear(ref Bus[] mas) //возраст автобуса
+        public static void BusYear( Bus[] mas) //возраст автобуса
         {
             while (true)
             {
                 byte year;
                 while (true)
                 {
+                    Console.WriteLine($"_____________________________________________");
                     Console.WriteLine("Введите номер автобуса(0 - для возвращения обратно):");
+                    Console.WriteLine($"_____________________________________________");
                     string a = Console.ReadLine();
 
                     if (a == "0")
@@ -155,23 +166,29 @@ namespace Lab3
                     }
                     catch (SystemException)
                     {
+                        Console.WriteLine($"_____________________________________________");
                         Console.WriteLine("Номер введён некорректно");
+                        Console.WriteLine($"_____________________________________________");
                         continue;
                     }
                 }
                 if (year > Convert.ToByte(mas.Length) || year < 0)
                 {
+                    Console.WriteLine($"_____________________________________________");
                     Console.WriteLine("Такого номера автобуса нетттт...");
+                    Console.WriteLine($"_____________________________________________");
                     continue;
                 }
                 else
                 {
+                    Console.WriteLine($"_____________________________________________");
                     Console.WriteLine($"Возраст автобуса номер {year}: {2020 - mas[year - 1].YearOfStartUse}");
                     break;
+                    Console.WriteLine($"_____________________________________________");
                 }
             }
         } 
-        public static Bus[] CreateABuses() // создание акземплярова автобусов
+        public static Bus[] CreateABuses(ref bool check) // создание акземплярова автобусов
         {
                 string a;
                 int count;
@@ -179,8 +196,10 @@ namespace Lab3
                 {
                     while (true)
                     {
-                        Console.WriteLine("Введите количество автобусов(0 для отмены):");
-                        a = Console.ReadLine();
+                    Console.WriteLine($"_____________________________________________");
+                    Console.WriteLine("Введите количество автобусов(0 для отмены):");
+                    Console.WriteLine($"_____________________________________________");
+                    a = Console.ReadLine();
                         try
                         {
                             count = Convert.ToInt32(a);
@@ -188,23 +207,31 @@ namespace Lab3
                         }
                         catch (SystemException)
                         {
-                            Console.WriteLine("Некорректно введено кол-во автобусов");
-                            continue;
+                        Console.WriteLine($"_____________________________________________");
+                        Console.WriteLine("Некорректно введено кол-во автобусов");
+                        Console.WriteLine($"_____________________________________________");
+                        continue;
                         }
 
                     }
                     if (count < 0)
                     {
-                        Console.WriteLine("Некорректно введено кол-во автобусов");
-                        continue;
+                    Console.WriteLine($"_____________________________________________");
+                    Console.WriteLine("Некорректно введено кол-во автобусов");
+                    Console.WriteLine($"_____________________________________________");
+                    continue;
                     }
+                if (count == 0) {
+                    check = false;
+                        break ; }
                     else break;
                 }
                 Bus[] mas = new Bus[count];
                 for (int i = 0; i < count; i++)
                 {
                     mas[i] = new Bus();
-                    Console.WriteLine($"Автобус номер {i + 1}");
+                Console.WriteLine($"_____________________________________________");
+                Console.WriteLine($"Автобус номер {i + 1}");
                     Console.WriteLine("Введите фамилию и инициалы водителя:");
                     mas[i].Drivername = Console.ReadLine();
                     Console.WriteLine("Введите номер автобуса(8 знаков)");
@@ -213,7 +240,8 @@ namespace Lab3
                     {
                         while (mas[i].BusNumber.Length != 8)
                         {
-                            Console.WriteLine("Некорректно введён номер автобуса");
+                        Console.WriteLine($"_____________________________________________");
+                        Console.WriteLine("Некорректно введён номер автобуса");
                             Console.WriteLine("Введите номер автобуса(8 знаков):");
                             mas[i].BusNumber = Console.ReadLine();
 
@@ -225,8 +253,10 @@ namespace Lab3
                         a = Console.ReadLine();
                         if (a.Length > 6 || string.IsNullOrWhiteSpace(a))
                         {
-                            Console.WriteLine("Номер маршрута введён неверно");
-                            continue;
+                        Console.WriteLine($"_____________________________________________");
+                        Console.WriteLine("Номер маршрута введён неверно");
+                        Console.WriteLine($"_____________________________________________");
+                        continue;
                         }
                         try
                         {
@@ -235,8 +265,10 @@ namespace Lab3
                         }
                         catch (SystemException)
                         {
-                            Console.WriteLine("Номер маршрута введён неверно");
-                        }
+                        Console.WriteLine($"_____________________________________________");
+                        Console.WriteLine("Номер маршрута введён неверно");
+                        Console.WriteLine($"_____________________________________________");
+                    }
                     }
                     Console.WriteLine("Введите марку автобуса:");
                     mas[i].BrandBus = Console.ReadLine();
@@ -246,9 +278,11 @@ namespace Lab3
                         a = Console.ReadLine();
                         if (a.Length != 4)
                         {
-                            Console.WriteLine("Год начала эксплуатации введён неверно");
+                        Console.WriteLine($"_____________________________________________");
+                        Console.WriteLine("Год начала эксплуатации введён неверно");
                             continue;
-                        }
+                        Console.WriteLine($"_____________________________________________");
+                    }
                         try
                         {
                             mas[i].YearOfStartUse = Convert.ToUInt32(a);
@@ -256,8 +290,10 @@ namespace Lab3
                         }
                         catch (SystemException)
                         {
-                            Console.WriteLine("Год начала эксплуатации");
-                        }
+                        Console.WriteLine($"_____________________________________________");
+                        Console.WriteLine("Год начала эксплуатации введён неверно");
+                        Console.WriteLine($"_____________________________________________");
+                    }
                     }
                     while (true)
                     {
@@ -270,8 +306,10 @@ namespace Lab3
                         }
                         catch (SystemException)
                         {
-                            Console.WriteLine("Пробег введён неверно");
-                        }
+                        Console.WriteLine($"_____________________________________________");
+                        Console.WriteLine("Пробег введён неверно");
+                        Console.WriteLine($"_____________________________________________");
+                    }
                     }
                 }
                 Console.Clear();
@@ -282,6 +320,7 @@ namespace Lab3
         {
             for (int i = 0; mas.Length > i; i++)
             {
+                Console.WriteLine($"_____________________________________________");
                 Console.WriteLine($"Автобус номер {i + 1}");
                 Console.WriteLine($"Имя и инициалы водителя: {mas[i].Drivername}");
                 Console.WriteLine($"Номер автобуса: {mas[i].BusNumber}");
@@ -293,6 +332,7 @@ namespace Lab3
             }
             Bus.CountOfBuses = mas.Length;
             Console.WriteLine($"Всего автобусов:{Bus.CountOfBuses}");
+            Console.WriteLine($"_____________________________________________");
         }
         public static void ListBusRoutNumber(ref Bus[] mas) //функция для вывода автобусов по номеру маршрута
         {
@@ -309,9 +349,12 @@ namespace Lab3
                 }
                 catch (SystemException)
                 {
+                    Console.WriteLine($"_____________________________________________");
                     Console.WriteLine("Значение введено некорректно");
+                    Console.WriteLine($"_____________________________________________");
                 }
             }
+            Console.WriteLine($"_____________________________________________");
             for (int i = 0; mas.Length > i; i++)
             {
                 if (mas[i].RoutNumber == b)
@@ -324,6 +367,7 @@ namespace Lab3
             {
                 Console.WriteLine($"Автобусов с таким номером маршрута нет!");
             }
+            Console.WriteLine($"_____________________________________________");
 
         }
         public static void ListBusYear( ref Bus[] mas) //функция вывода автобусов, которые используются дольше заданного срока
@@ -350,6 +394,7 @@ namespace Lab3
                     continue;
                 }
             }
+            Console.WriteLine($"_____________________________________________");
             for (int i = 0; mas.Length > i; i++)
             {
                 int year = 2020;
@@ -363,6 +408,7 @@ namespace Lab3
             {
                 Console.WriteLine("Подходящих автобусов нет...");
             }
+            Console.WriteLine($"_____________________________________________");
         }
 
         public static void Primer(out int num) //работа с out
@@ -386,11 +432,13 @@ namespace Lab3
         }
 
     }
-    public class SchoolBus : Bus
+    public class SchoolBus : Bus //Пример вызова закрытого конструктора
     {
         private SchoolBus()
         {
-           Console.WriteLine( "ШКОЛА");
+            Console.WriteLine($"_____________________________________________");
+            Console.WriteLine( "ШКОЛА");
+            Console.WriteLine($"_____________________________________________");
         }
 
         public static void OutputPrivate(){
