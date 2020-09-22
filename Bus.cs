@@ -13,6 +13,8 @@ namespace Lab3
         private double mileage; //Пробег
         public static int CountOfBuses = 0;
         public const int wheels = 4;
+        public readonly string read = "Только для  чтения ";
+
         public string Drivername
         {
             get
@@ -97,7 +99,7 @@ namespace Lab3
                 year_of_start_of_use = value;
             }
         }
-
+        
         public double Mileage
         {
             get
