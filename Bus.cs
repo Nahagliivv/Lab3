@@ -184,7 +184,6 @@ namespace Lab3
                     Console.WriteLine($"_____________________________________________");
                     Console.WriteLine($"Возраст автобуса номер {year}: {2020 - mas[year - 1].YearOfStartUse}");
                     break;
-                    Console.WriteLine($"_____________________________________________");
                 }
             }
         } 
